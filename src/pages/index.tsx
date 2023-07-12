@@ -8,6 +8,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { PageLayout } from "~/components/layout";
 import { PostView } from "~/components/postview";
+import { Button } from "@/components/ui/button";
 
 const CreatePostWizard = () => {
   const { user } = useUser();
@@ -34,7 +35,7 @@ const CreatePostWizard = () => {
   if (!user) return null;
 
   return (
-    <div className="flex w-full gap-3">
+    <div className="flex w-full gap-3 border-b border-slate-400 px-6 py-4">
       <Image
         src={user.profileImageUrl}
         alt="Profile Image"
@@ -43,7 +44,7 @@ const CreatePostWizard = () => {
         height={56}
       />
       <input
-        placeholder="type some emojis!"
+        placeholder="What is on your mind?"
         type="text"
         className="grow bg-transparent outline-none"
         value={input}
@@ -59,9 +60,13 @@ const CreatePostWizard = () => {
         }}
       />
       {input !== "" && !isPosting && (
-        <button onClick={() => mutate({ content: input })} disabled={isPosting}>
+        <Button
+          className="px-5 hover:bg-zinc-800"
+          onClick={() => mutate({ content: input })}
+          disabled={isPosting}
+        >
           Post
-        </button>
+        </Button>
       )}
       {isPosting && (
         <div className="flex items-center justify-center">
@@ -102,14 +107,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <PageLayout>
-        <div className="border-b border-slate-400 p-4">
-          {!isSignedIn && (
-            <div className="flex justify-center">
-              <SignInButton />
-            </div>
-          )}
-          {!!isSignedIn && <CreatePostWizard />}
-        </div>
+        {!!isSignedIn && <CreatePostWizard />}
         <Feed />
       </PageLayout>
     </>
