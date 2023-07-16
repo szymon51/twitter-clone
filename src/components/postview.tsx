@@ -13,7 +13,7 @@ export const PostView = (props: PostWithUser) => {
     <Link href={`/post/${post.id}`}>
       <div
         key={post.id}
-        className="flex gap-3 border-b border-slate-400 px-6 py-4 hover:bg-zinc-900 "
+        className="flex gap-3 border-b border-zinc-600 p-4 hover:bg-zinc-800  active:bg-zinc-800 "
       >
         <Link href={`/@${author.username}`}>
           <Image
