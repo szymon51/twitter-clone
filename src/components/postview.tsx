@@ -36,7 +36,7 @@ export const PostView = (props: PostWithUser) => {
               ).fromNow()}`}</span>
             </Link>
           </div>
-          <span className="text-2xl">{post.content}</span>
+          <span className="whitespace-normal text-lg">{post.content}</span>
         </div>
       </div>
     </Link>
