@@ -17,10 +17,10 @@ export const PostView = (props: PostWithUser) => {
       >
         <Link href={`/@${author.username}`}>
           <Image
-            width={56}
-            height={56}
+            width={48}
+            height={48}
             src={author.profilePicture}
-            className="h-14 w-14 rounded-full"
+            className="  rounded-full"
             alt={`@${author.username} 's profile picture`}
           />
         </Link>
