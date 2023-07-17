@@ -4,11 +4,11 @@ import { LucideLogIn, LucideLogOut } from "lucide-react";
 import type { FC, PropsWithChildren } from "react";
 
 export const PageLayout = (props: PropsWithChildren) => {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   return (
-    <main className="flex h-screen justify-center">
-      <ActionsBar isSignedIn={!!isSignedIn} />
-      <div className="h-full w-full overflow-y-scroll border-x border-slate-400 md:max-w-2xl">
+    <main className="flex h-screen justify-center md:gap-4 ">
+      <ActionsBar isSignedIn={!!isSignedIn} username={user?.username} />
+      <div className="h-full w-full  overflow-y-scroll border-x border-zinc-600 md:max-w-3xl">
         {props.children}
       </div>
       <FollowSuggestions />
@@ -74,24 +74,46 @@ const SuggestionUserCard = ({
 
 interface ActionsBarProps {
   isSignedIn: boolean;
+  username: string | null | undefined;
 }
 
-const ActionsBar: FC<ActionsBarProps> = ({ isSignedIn }) => {
+const ActionsBar: FC<ActionsBarProps> = ({ isSignedIn, username }) => {
+  const router = useRouter();
   return (
-    <div className="p-4">
+    <div className="flex flex-col  items-start gap-3  p-3">
+      <div className="rounded-xl  p-3 ">
+        <LucideTwitter />
+      </div>
+      <Link
+        href="/"
+        className="flex h-12 gap-2 rounded-full  p-3 hover:bg-zinc-700"
+      >
+        <LucideHome />
+        <p className="hidden whitespace-nowrap pl-2 pr-3 md:block">Home</p>
+      </Link>
+      <Link
+        href={`/${username ?? ""}`}
+        className="flex h-12 gap-2 rounded-full  p-3 hover:bg-zinc-700"
+      >
+        <LucideUser />
+        <p className="hidden whitespace-nowrap pl-2 pr-3 md:block">Profile</p>
+      </Link>
       {isSignedIn ? (
         <SignOutButton>
           <Button className="rounded-lg p-4 hover:bg-zinc-800">
             <LucideLogOut />
           </Button>
         </SignOutButton>
-      ) : (
-        <SignInButton mode="modal">
-          <Button className="rounded-lg p-4 hover:bg-zinc-800">
-            <LucideLogIn />
-          </Button>
-        </SignInButton>
-      )}
+      ) : null}
+      <Button
+        className="flex h-12  gap-2 rounded-full bg-blue-500 p-3 hover:bg-blue-400 active:bg-blue-400 md:px-16"
+        onClick={() => {
+          router.push("/");
+        }}
+      >
+        <LucideFeather className="sm:block md:hidden" />
+        <p className="hidden whitespace-nowrap pl-2 pr-3 md:block">Tweet</p>
+      </Button>
     </div>
   );
 };
