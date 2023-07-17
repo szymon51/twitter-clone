@@ -13,9 +13,9 @@ export const PostView = (props: PostWithUser) => {
     <Link href={`/post/${post.id}`}>
       <div
         key={post.id}
-        className="flex gap-3 border-b border-zinc-600 p-4 hover:bg-zinc-800  active:bg-zinc-800 "
+        className="flex gap-3 border-b border-zinc-600 p-4  hover:bg-zinc-800  active:bg-zinc-800 "
       >
-        <Link href={`/@${author.username}`}>
+        <Link href={`/@${author.username}`} className="flex-shrink-0">
           <Image
             width={48}
             height={48}
@@ -36,7 +36,9 @@ export const PostView = (props: PostWithUser) => {
               ).fromNow()}`}</span>
             </Link>
           </div>
-          <span className="whitespace-normal text-lg">{post.content}</span>
+          <p className="max-w-sm break-words text-lg md:max-w-md">
+            {post.content}
+          </p>
         </div>
       </div>
     </Link>
