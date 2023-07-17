@@ -98,19 +98,20 @@ const ActionsBar: FC<ActionsBarProps> = ({ isSignedIn, username }) => {
         className="flex h-12 gap-2 rounded-full  p-3 hover:bg-zinc-700"
       >
         <LucideHome />
-        <p className="hidden whitespace-nowrap pl-2 pr-3 md:block">Home</p>
+        <p className="hidden  pl-2 pr-3 md:block">Home</p>
       </Link>
       <Link
         href={`/${username ?? ""}`}
         className="flex h-12 gap-2 rounded-full  p-3 hover:bg-zinc-700"
       >
         <LucideUser />
-        <p className="hidden whitespace-nowrap pl-2 pr-3 md:block">Profile</p>
+        <p className="hidden  pl-2 pr-3 md:block">Profile</p>
       </Link>
       {isSignedIn ? (
         <SignOutButton>
-          <Button className="rounded-lg p-4 hover:bg-zinc-800">
+          <Button className="flex h-12 gap-2 rounded-full p-3 hover:bg-zinc-700">
             <LucideLogOut />
+            <p className="hidden  pl-2 pr-3 md:block">Log out</p>
           </Button>
         </SignOutButton>
       ) : null}
@@ -121,7 +122,7 @@ const ActionsBar: FC<ActionsBarProps> = ({ isSignedIn, username }) => {
         }}
       >
         <LucideFeather className="sm:block md:hidden" />
-        <p className="hidden whitespace-nowrap pl-2 pr-3 md:block">Tweet</p>
+        <p className="hidden  pl-2 pr-3 md:block">Tweet</p>
       </Button>
     </div>
   );
