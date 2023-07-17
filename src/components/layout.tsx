@@ -1,7 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
-import { LucideLogIn, LucideLogOut } from "lucide-react";
+import { SignOutButton, useUser } from "@clerk/nextjs";
+import {
+  LucideFeather,
+  LucideHome,
+  LucideLogOut,
+  LucideTwitter,
+  LucideUser,
+} from "lucide-react";
 import type { FC, PropsWithChildren } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const PageLayout = (props: PropsWithChildren) => {
   const { isSignedIn, user } = useUser();
