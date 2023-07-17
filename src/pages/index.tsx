@@ -43,10 +43,11 @@ const CreatePostWizard = () => {
         width={48}
         height={48}
       />
-      <input
+      <textarea
+        minLength={1}
+        maxLength={255}
         placeholder="What is on your mind?"
-        type="text"
-        className="grow bg-transparent outline-none"
+        className="grow resize-none bg-transparent p-3 text-lg outline-none"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         disabled={isPosting}
@@ -59,20 +60,13 @@ const CreatePostWizard = () => {
           }
         }}
       />
-      {input !== "" && !isPosting && (
-        <Button
-          className="px-5 hover:bg-zinc-800"
-          onClick={() => mutate({ content: input })}
-          disabled={isPosting}
-        >
-          Post
-        </Button>
-      )}
-      {isPosting && (
-        <div className="flex items-center justify-center">
-          <LoadingSpinner size={20} />
-        </div>
-      )}
+      <Button
+        className="self-end rounded-full bg-blue-500 px-4 py-2 hover:bg-blue-400 disabled:cursor-not-allowed"
+        onClick={() => mutate({ content: input })}
+        disabled={isPosting || input === ""}
+      >
+        Tweet
+      </Button>
     </div>
   );
 };
