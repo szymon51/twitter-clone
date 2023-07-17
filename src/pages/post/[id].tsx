@@ -7,6 +7,20 @@ import { prisma } from "~/server/db";
 import type { GetStaticProps, NextPage } from "next";
 import { PageLayout } from "~/components/layout";
 import { PostView } from "~/components/postview";
+import { LucideArrowLeft } from "lucide-react";
+import Link from "next/link";
+
+const Navigation = () => {
+  return (
+    <Link
+      href="/"
+      className="flex items-center gap-3 border-b border-zinc-600 p-4 text-xl font-bold hover:bg-zinc-800"
+    >
+      <LucideArrowLeft />
+      Post
+    </Link>
+  );
+};
 
 const SinglePostPage: NextPage<{ id: string }> = ({ id }) => {
   const { data } = api.posts.getById.useQuery({
@@ -21,7 +35,11 @@ const SinglePostPage: NextPage<{ id: string }> = ({ id }) => {
         <title>{`${data.post.content} - @${data.author.username}`}</title>
       </Head>
       <PageLayout>
+        <Navigation />
         <PostView {...data} />
+        <p className="text-bold p-4 text-center text-lg">
+          A place for future comments ...
+        </p>
       </PageLayout>
     </>
   );
