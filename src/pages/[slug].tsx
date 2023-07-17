@@ -6,6 +6,20 @@ import Image from "next/image";
 import { LoadinPage } from "~/components/Loading";
 import { PostView } from "~/components/postview";
 import { generateSSGHelper } from "~/server/helpers/ssgHelper";
+import Link from "next/link";
+import { LucideArrowLeft } from "lucide-react";
+
+const Navigation = () => {
+  return (
+    <Link
+      href="/"
+      className="flex items-center gap-3 border-b border-zinc-600 p-4 text-xl font-bold hover:bg-zinc-800"
+    >
+      <LucideArrowLeft />
+      Profile
+    </Link>
+  );
+};
 
 const ProfileFeed = (props: { userId: string }) => {
   const { data, isLoading } = api.posts.getPostsByUserId.useQuery({
